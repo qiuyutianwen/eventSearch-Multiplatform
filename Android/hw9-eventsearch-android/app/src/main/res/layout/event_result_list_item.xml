@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/iv_event_result_icon"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/no_icon"/>
+
+    <LinearLayout
+        android:id="@+id/ar_ll_details_clickable_surface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_event_result_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Aasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd" />
+
+        <TextView
+            android:id="@+id/tv_event_result_venue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="B" />
+
+        <TextView
+            android:id="@+id/tv_event_result_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="C" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ra_iv_favorite_toggle"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/heart_outline_black" />
+</LinearLayout>

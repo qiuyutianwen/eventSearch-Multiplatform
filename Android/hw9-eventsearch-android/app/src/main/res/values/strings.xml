@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Event Search</string>
+    <string name="main_tab_search">Search</string>
+    <string name="main_tab_favourites">Favourites</string>
+
+    <!--main activity > fragment_search-->
+    <string name="main_fs_keyword">Keyword</string>
+    <string name="main_fs_keyword_hint">Enter keyword</string>
+    <string name="main_fs_category">Category</string>
+    <string name="main_fs_distance">Distance</string>
+    <string name="main_fs_from">From</string>
+    <string name="main_fs_from_radio1">Current</string>
+    <string name="main_fs_from_radio2">Other. Specify location</string>
+    <string name="main_fs_from_radio2_hint">Type in the location</string>
+    <string name="main_fs_search">Search</string>
+    <string name="main_fs_clear">Clear</string>
+
+    <!--main activity > fragment_search--> category -->
+    <string-array name="category">
+        <item>All</item>
+        <item>Music</item>
+        <item>Sports</item>
+        <item>Arts &amp; Theatre</item>
+        <item>Film</item>
+        <item>Miscellaneous</item>
+    </string-array>
+
+    <!--main activity > fragment_search--> distance_unit -->
+    <string-array name="distance_unit">
+        <item>miles</item>
+        <item>kilometers</item>
+    </string-array>
+
+    <!-- main activity > fragment_favourites  -->
+    <string name="no_favorites">No Favourite</string>
+    <!-- results activity -->
+    <string name="no_results">No results found.</string>
+    <!-- shared preferences for favorites -->
+    <string name="fav_shared_pref_file">com.example.hw9_eventsearch_android.favourites_SPF</string>
+    <string name="fav_json">favouriteEventResultsJSON</string>
+
+    <!--details activity-->
+    <string name="ad_tab_event">EVENTS</string>
+    <string name="ad_tab_artist">ARTIST(S)</string>
+    <string name="ad_tab_venue">VENUE</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Toggle Favorite"
+        android:id="@+id/ad_action_favorite"
+        android:icon="@drawable/heart_outline_white"
+        android:orderInCategory="1"
+        app:showAsAction="always" />
+
+    <item
+        android:title="Tweet"
+        android:id="@+id/ad_action_tweet"
+        android:icon="@drawable/ic_twitter_ic__2_"
+        android:orderInCategory="2"
+        app:showAsAction="always" />
+
+</menu>
