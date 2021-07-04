@@ -1,0 +1,167 @@
+<!--Search Form-->
+<div class="container py-4">
+  <div class="row align-items-md-stretch">
+    <div class="pb-5 bg-light border rounded-3">
+      <div class="col-sm-9 mx-auto">
+        <h3 class="text-center pt-4 pb-2">Entertainment Event Ticket Search</h3>
+        <form>
+          <!-- Keyword -->
+          <div class="row mb-3">
+            <label for="keyword" class="col-sm-2 col-form-label">Keyword <span class="text-danger">*</span></label>
+            <div class="col-sm-10" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+              <input
+                class="form-control"
+                type="search"
+                placeholder="Enter Artist, Team or Event Name (eg. Lakers)"
+                name="keyword"
+                id="keyword"
+                required
+                [ngClass]="{'has-error': keywordEmpty}"
+                [(ngModel)]="keyword"
+                (keyup) = "onChange(keyword)"
+                [matAutocomplete]="auto"
+                [matAutocompleteConnectedTo]="origin"
+              >
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
+              </mat-autocomplete>
+              <p class="invalid-info" [hidden]="!submitted ||(submitted && keyword !== '')">Please enter a keyword!</p>
+            </div>
+          </div>
+          <!-- Category -->
+          <div class="row mb-3">
+            <label for="category" class="col-sm-2 col-form-label">Category</label>
+            <div class="col-sm-4">
+              <select class="form-select" name="category" id="category" [(ngModel)]="category">
+                <option *ngFor="let item of categories" [value]="item">{{item}}</option>
+              </select>
+            </div>
+          </div>
+          <!-- Distance -->
+          <div class="row mb-3">
+            <label for="distance" class="col-sm-2 col-form-label">Distance</label>
+            <div class="col-sm-4">
+              <input
+                class="form-control"
+                type="text" id="distance"
+                name="distance" placeholder="10"
+                [(ngModel)]="distance"
+              >
+            </div>
+            <div class="col-sm-4">
+              <select class="form-select" id="distance_unit" name="distance_unit" [(ngModel)]="distance_unit">
+                <option *ngFor="let item of distance_units" [value]="item">{{item}}</option>
+              </select>
+            </div>
+          </div>
+          <!-- From -->
+          <fieldset class="row mb-3">
+            <legend for="from" class="col-form-label col-sm-2 pt-0">From <span class="text-danger">*</span></legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="gridRadios1"
+                  value="true"
+                  [(ngModel)]="here"
+                >
+                <label class="form-check-label" for="gridRadios1">
+                  Current location
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="gridRadios2"
+                  value="false"
+                  [(ngModel)]="here"
+                >
+                <label class="form-check-label" for="gridRadios2">
+                  Other. Please specify:
+                </label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="address"
+                  name="address"
+                  required
+                  [disabled]="here==='true'"
+                  [(ngModel)]="address"
+                >
+                <p class="invalid-info" [hidden]="!(here==='false'&& submitted && address === '')">Please enter a location!</p>
+              </div>
+            </div>
+          </fieldset>
+          <!-- Submit & Clear -->
+          <button type="submit" class="btn btn-primary" [disabled]="keyword === '' || (here==='false'&&address==='')" (click)="onSubmit()"><span class="icon_search"></span> Search</button> &nbsp;
+          <button class="btn btn-outline-secondary reset_btn" (click)="onClear()"><span class="icon_size icon_clear"></span> Clear</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Results Favorites Switch-->
+<ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-results-tab" data-bs-toggle="pill" data-bs-target="#pills-results" type="button" role="tab" aria-controls="pills-results" aria-selected="true" (click)="onClickResult()">Results</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-favorites-tab" data-bs-toggle="pill" data-bs-target="#pills-favorites" type="button" role="tab" aria-controls="pills-favorites" aria-selected="false" (click)="onClickFavorite()">Favorites</button>
+  </li>
+</ul>
+<div class="container pt-0 pb-5">
+  <div class="progress" *ngIf="!hideProgress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [attr.aria-valuenow]="progressValue" aria-valuemin="0" aria-valuemax="100" [style.width]="progressValue+'%'"></div>
+  </div>
+</div>
+
+<div id="carouselControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false"><!-- carousel slide begain -->
+  <div class="carousel-inner"><!--carousel-inner began-->
+
+
+    <div class="carousel-item active">
+      <div class="tab-content" id="pills-tabContent">
+
+        <div class="tab-pane fade show active" id="pills-results" role="tabpanel" aria-labelledby="pills-results-tab">
+
+          <!-- Results -->
+          <app-results [(results)]="searchResults" [(details)]="details" [(lastDetailIndex)]="selectedResultIndex" [noRecordsInfo]="noRecordsInfo" [hasErrorInfo]="hasErrorInfo" [hidden]="!selectResult"></app-results>
+          <!-- Results end-->
+
+        </div>
+
+        <div class="tab-pane fade" id="pills-favorites" role="tabpanel" aria-labelledby="pills-favorites-tab">
+
+          <!-- Favorites -->
+          <app-favorites [(results)]="searchResults" [(favoriteList)]="favoriteList" [hidden]="selectResult"></app-favorites>
+          <!-- Favorites end-->
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="carousel-item">
+
+      <!-- Details -->
+      <app-details [(results)]="searchResults" [(details)]="details" [lastDetailIndex]="selectedResultIndex"></app-details>
+      <!-- Details end-->
+
+    </div>
+
+
+  </div><!--carousel-inner end-->
+</div><!-- carousel slide end -->
+<div class="container pt-0 pb-5">
+  <div class="alert alert-warning" role="alert" [hidden]="noRecordsInfo==='true'">
+    No records.
+  </div>
+  <div class="alert alert-danger" role="alert" [hidden]="hasErrorInfo==='true'">
+    Failed to get search results.
+  </div>
+</div>

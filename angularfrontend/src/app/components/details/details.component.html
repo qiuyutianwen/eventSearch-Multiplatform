@@ -1,0 +1,165 @@
+<!-- Details -->
+<div class="container pb-4">
+  <h3 class="text-center pt-2 pb-2">{{details[10]}}</h3>
+  <div class="row py-2">
+    <div class="col">
+      <button type="button" class="btn btn-outline-secondary" data-bs-target="#carouselControlsNoTouching" data-bs-slide="prev">&#8249; List</button>
+    </div>
+    <div class="col text-end">
+      <a href="https://twitter.com/intent/tweet?text=Check out {{details[10]}} located at {{details[1]}}. &hashtags=CSCI571EventSearch" class="twitter_btn" target="_blank"><span class="icon_twitter"></span></a> &nbsp;
+      <button type="button" class="btn btn-outline-secondary favorite_btn"  (click)="onClickfavorite()">
+        <span class="icon_star_btn icon_star" [hidden]="details[11]===true"></span>
+        <span class="icon_star_btn icon_star_active" [hidden]="details[11]===false"></span>
+      </button>
+    </div>
+  </div>
+  <ul class="nav nav-tabs justify-content-end" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="event-tab" data-bs-toggle="tab" data-bs-target="#event" type="button" role="tab" aria-controls="event" aria-selected="true">Event</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="artist-tab" data-bs-toggle="tab" data-bs-target="#artist" type="button" role="tab" aria-controls="artist" aria-selected="false" (click)="getArtistDetails(details[8])">Artist/Teams</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="venue-tab" data-bs-toggle="tab" data-bs-target="#venue" type="button" role="tab" aria-controls="venue" aria-selected="false" (click)="showVenueDetails()">Venue</button>
+    </li>
+  </ul>
+  <div class="tab-content pt-4" id="myTabContent">
+    <div class="tab-pane fade show active" id="event" role="tabpanel" aria-labelledby="event-tab">
+      <!-- Event -->
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <tbody>
+          <tr [hidden]="details[0]==='N/A'">
+            <th scope="row">Artist/Team(s)</th>
+            <td>{{details[0]}}</td>
+          </tr>
+          <tr [hidden]="details[1]==='N/A'">
+            <th scope="row">Venue</th>
+            <td>{{details[1]}}</td>
+          </tr>
+          <tr [hidden]="details[2]==='N/A'">
+            <th scope="row">Time</th>
+            <td>{{details[2]}}</td>
+          </tr>
+          <tr [hidden]="details[3]==='N/A'">
+            <th scope="row">Category</th>
+            <td>{{details[3]}}</td>
+          </tr>
+          <tr [hidden]="details[4]==='N/A'">
+            <th scope="row">Price Range</th>
+            <td>{{details[4]}}</td>
+          </tr>
+          <tr [hidden]="details[5]==='N/A'">
+            <th scope="row">Ticket Status</th>
+            <td>{{details[5]}}</td>
+          </tr>
+          <tr [hidden]="details[6]==='#'">
+            <th scope="row">Buy Ticket At</th>
+            <td><a href="{{details[6]}}" target="_blank" class="link-primary">Ticketmaster</a></td>
+          </tr>
+          <tr [hidden]="details[7]==='#'">
+            <th scope="row">Seat Map</th>
+            <td>
+              <a type="button" class="link-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">View Seat Map Here</a>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">View Seat Map Here</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <img class="seat_map" src="{{details[7]}}" />
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="artist" role="tabpanel" aria-labelledby="artist-tab">
+      <!-- Artist -->
+      <h5 class="text-center">{{details[10]}}</h5>
+      <p class="text-center" [hidden]="details[8] !=='N/A'">No details available</p>
+      <div class="table-responsive" [hidden]="details[8] ==='N/A'">
+        <table class="table">
+          <tbody>
+          <tr>
+            <th scope="row">Name</th>
+            <td>{{artistDetails[0]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Followers</th>
+            <td>{{artistDetails[1]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Popularity</th>
+            <td>
+              <round-progress [current]="artistDetails[2]" [max]="100" [color]="'#2EFA46'" style="width: 60px; height: 60px;"></round-progress>
+              <span class="round_progress_bar_text">{{artistDetails[2]}}</span>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Check At</th>
+            <td><a href="{{artistDetails[3]}}" target="_blank" class="link-primary">Spotify</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="venue" role="tabpanel" aria-labelledby="venue-tab">
+      <!-- Venue -->
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+          <tr>
+            <th scope="row" width="30%">Address</th>
+            <td>{{venueDetails[0]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">City</th>
+            <td>{{venueDetails[1]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Phone Number</th>
+            <td>{{venueDetails[2]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Open Hours</th>
+            <td class="text-break">{{venueDetails[3]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">General Rule</th>
+            <td class="text-break">{{venueDetails[4]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Child Rule</th>
+            <td class="text-break">{{venueDetails[5]}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="googlemap">
+        <agm-map
+          [latitude]='lat'
+          [longitude]='long'
+          [zoom]="zoom"
+        >
+          <agm-marker
+            [latitude]="lat"
+            [longitude]="long">
+          </agm-marker>
+
+        </agm-map>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Details end-->

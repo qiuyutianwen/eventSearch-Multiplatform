@@ -1,0 +1,32 @@
+<!-- Favorites -->
+<div class="container pb-4">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Event</th>
+        <th scope="col">Category</th>
+        <th scope="col">Venue Info</th>
+        <th scope="col" class="text-center">Favorite</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of favoriteList, let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{item[2]}}</td>
+        <td><a href="#" data-bs-target="#carouselControlsNoTouching" data-bs-slide="next" data-bs-toggle="tooltip" data-bs-placement="bottom" class="text_limit" title="{{item[3]}}">{{item[3]}}</a></td>
+        <td>{{item[4]}}</td>
+        <td>{{item[5]}}</td>
+        <td class="text-center">
+          <button (click)="removefavorite(item[0], i)">
+            <span class="icon_size_forlist icon_delete"></span>
+          </button>
+          </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Favorites end-->

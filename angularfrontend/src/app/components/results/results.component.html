@@ -1,0 +1,39 @@
+<!-- Results -->
+<div class="container pb-4" [hidden]="results.length===0">
+  <div class="border-bottom text-end py-2">
+      <a class="text-black-50 text-decoration-none" [class.disabled]="lastDetailIndex>=0 ? null: true" href="#" data-bs-target="#carouselControlsNoTouching" data-bs-slide="next" data-bs-toggle="tooltip" data-bs-placement="bottom">Details &#8250;</a>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Event</th>
+        <th scope="col">Category</th>
+        <th scope="col">Venue Info</th>
+        <th scope="col" class="text-center">Favorite</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of results; let i = index;">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item['Date']}}</td>
+        <td><a href="#" (click)="showDetails(i)" title="{{item['Event']}}" data-bs-target="#carouselControlsNoTouching" data-bs-slide="next" data-bs-toggle="tooltip" data-bs-placement="bottom" class="text_limit">
+          {{item['Event']}}</a></td>
+        <td>{{item['Category']}}</td>
+        <td>{{item['Venue']}}</td>
+        <td class="text-center">
+          <button class="btn btn-light" (click)="onClickfavorite(i)">
+            <span class="icon_size_forlist icon_star_active" [hidden]="item['favorite']===false"></span>
+            <span class="icon_size_forlist icon_star" [hidden]="item['favorite']===true"></span>
+          </button>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Results end-->

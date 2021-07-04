@@ -1,0 +1,36 @@
+input.ng-invalid {
+  border-color: red;
+}
+input.ng-untouched {
+  border-color: #ced4da;
+}
+.invalid-info {
+  color: red;
+  padding: 0;
+  margin: 0;
+}
+.icon_size {
+  width: 26px;
+  height: 26px;
+  margin-top: -3px;
+  margin-left: -5px;
+  margin-bottom: -7px;
+  background-size: 26px auto !important;
+  display: inherit;
+}
+.icon_search {
+  width: 30px;
+  height: 30px;
+  margin-top: -5px;
+  margin-left: -5px;
+  margin-bottom: -9px;
+  background-size: 30px auto !important;
+  display: inherit;
+  background: url("../img/outline_clear_all_black_24dp.png") no-repeat top center;
+}
+.icon_clear {
+  background: url("../img/outline_search_black_24dp.png") no-repeat top center;
+}
+.reset_btn:hover .icon_clear {
+  background: url("../img/outline_search_black_24dp.png") no-repeat bottom center;
+}

@@ -1,0 +1,22 @@
+.icon_size_forlist {
+  width: 26px;
+  height: 26px;
+  margin: 0 auto;
+  background-size: 26px auto !important;
+  display: block;
+}
+.icon_star {
+  cursor: pointer;
+  background: url("../img/outline_star_border_purple500_black_24dp.png") no-repeat top center;
+}
+.icon_star_active {
+  cursor: pointer;
+  background: url("../img/outline_star_border_purple500_black_24dp.png") no-repeat center center;
+}
+.text_limit {
+  display: inline-block;
+  width: 285px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,18 @@
+.icon_size_forlist {
+  width: 26px;
+  height: 26px;
+  margin: 0 auto;
+  background-size: 26px auto !important;
+  display: block;
+}
+.icon_delete {
+  cursor: pointer;
+  background: url("../img/outline_delete_black_24dp.png") no-repeat top center;
+}
+.text_limit {
+  display: inline-block;
+  width: 285px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
